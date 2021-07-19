@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="xml" format="xml">
+      <types:shape format="xml-schema" element="student_data" location="schemas/stud-2.xsd"/>
+    </types:type>
+    <types:type name="json" format="json">
+      <types:shape format="json-schema" location="schemas/stu-2.json"/>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#5bd982da-5a85-48ea-b601-1b3d488364cd">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="xml"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="json"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
