@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ae3a4eab-3b37-40ea-8786-1fbfae8a9504" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="XML_TO_JSON" doc:id="d80a5e2e-1a4b-434f-af3f-92690a94a843" >
+		<http:listener doc:name="Listener" doc:id="1ac210d3-34b6-4de7-924d-475c3ec94ea3" config-ref="HTTP_Listener_config" path="/xmltojson"/>
+		<logger level="INFO" doc:name="Logger" doc:id="47d03349-0bbb-49a9-9d2b-6d37f300490b" message="#[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="5bd982da-5a85-48ea-b601-1b3d488364cd" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload.student_data.*student map ( student , indexOfStudent ) -> {
+	sname: student.stu_name default "",
+	smark: student.stu_mark default 0,
+	sid: student.stu_id default 0
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="4fa9106c-3359-477c-9b3a-375d656cb481" message="#[payload]"/>
+		<file:write doc:name="Write" doc:id="98776f02-1af7-4bc0-96c8-c55fbb223b33" path="C:\Users\hailu\data\stujsonfile\student.json" mode="APPEND"/>
+	</flow>
+</mule>

@@ -1,0 +1,49 @@
+{
+	"definitions": {},
+	"$schema": "http://json-schema.org/draft-07/schema#", 
+	"$id": "https://example.com/object1615348278.json", 
+	"title": "Root", 
+	"type": "array",
+	"default": [],
+	"items":{
+		"$id": "#root/items", 
+		"title": "Items", 
+		"type": "object",
+		"required": [
+			"sid",
+			"sname",
+			"smark"
+		],
+		"properties": {
+			"sid": {
+				"$id": "#root/items/sid", 
+				"title": "Sid", 
+				"type": "integer",
+				"examples": [
+					1100010
+				],
+				"default": 0
+			},
+			"sname": {
+				"$id": "#root/items/sname", 
+				"title": "Sname", 
+				"type": "string",
+				"default": "",
+				"examples": [
+					"lidiya"
+				],
+				"pattern": "^.*$"
+			},
+			"smark": {
+				"$id": "#root/items/smark", 
+				"title": "Smark", 
+				"type": "integer",
+				"examples": [
+					50
+				],
+				"default": 0
+			}
+		}
+	}
+
+}

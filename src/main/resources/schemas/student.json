@@ -1,0 +1,49 @@
+{
+	"definitions": {},
+	"$schema": "http://json-schema.org/draft-07/schema#", 
+	"$id": "https://example.com/object1615347087.json", 
+	"title": "Root", 
+	"type": "array",
+	"default": [],
+	"items":{
+		"$id": "#root/items", 
+		"title": "Items", 
+		"type": "object",
+		"required": [
+			"eid",
+			"name",
+			"mark"
+		],
+		"properties": {
+			"eid": {
+				"$id": "#root/items/eid", 
+				"title": "Eid", 
+				"type": "integer",
+				"examples": [
+					1100
+				],
+				"default": 0
+			},
+			"name": {
+				"$id": "#root/items/name", 
+				"title": "Name", 
+				"type": "string",
+				"default": "",
+				"examples": [
+					"Usha"
+				],
+				"pattern": "^.*$"
+			},
+			"mark": {
+				"$id": "#root/items/mark", 
+				"title": "Mark", 
+				"type": "integer",
+				"examples": [
+					50
+				],
+				"default": 0
+			}
+		}
+	}
+
+}
